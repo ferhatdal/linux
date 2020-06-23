@@ -3,11 +3,8 @@
 ### http://www.ferhatdal.com
 
 ## First install wget
-## Primeiro instale o wget
-
 
 echo "TOMCAT9 AS A SERVICE"
-
 
 yum -y  update
 
@@ -30,9 +27,10 @@ echo "==========================================================================
 rm -rf /etc/tomcat9/tomcat-users.xml
 touch /etc/tomcat9/tomcat-users.xml
 
-echo "Setting Tomcat User"
+echo "Setting Tomcat User" 
+echo "DO NOT FORGET TO CHANGE PASSWD !!!"
 echo "manager:manager passwd:manager"
-
+echo "manager:admin passwd:admin"
 echo ' limitations under the License.
 -->
 <tomcat-users xmlns="http://tomcat.apache.org/xml"
@@ -92,10 +90,10 @@ echo '<multipart-config>
 
 systemctl restart tomcat9
 
-echo "Checking Tomcat Service Connection tcp/8080"
+echo "Checking Tomcat Service Socket tcp/8080"
 netstat -antp | grep 8080
 
-echo "INSTALLATION COMPLETED!"
+echo "COMPLETED!"
 
 ## Open in web browser:
 ## http://server_IP_address:8080
