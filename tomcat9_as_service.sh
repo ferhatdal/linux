@@ -1,32 +1,21 @@
 #!/bin/bash
-### Install Tomcat 9 + JRE8 on CentOS7
+### Install Tomcat 9 + JRE on CentOS7
 ### http://www.ferhatdal.com
-
-## First install wget
 
 echo "TOMCAT9 AS A SERVICE"
 
 yum -y  update
-
-yum -y install wget
-
 yum -y install java-1.8.0-openjdk.x86_64 java-1.8.0-openjdk-devel.x86_64
-
 rpm -Uvh https://harbottle.gitlab.io/harbottle-main/7/x86_64/harbottle-main-release.rpm
-
 xdotool key y
-
 yum -y install tomcat9 && yum -y install tomcat9-admin-webapps && yum -y install tomcat9-docs-webapp && yum -y install tomcat9-native && yum -y install tomcat9-webapps
-
 echo "=========================================================================="
 systemctl start tomcat9
 systemctl status tomcat9
 systemctl enable tomcat9
 echo "=========================================================================="
-
 rm -rf /etc/tomcat9/tomcat-users.xml
 touch /etc/tomcat9/tomcat-users.xml
-
 echo "Setting Tomcat User" 
 echo "DO NOT FORGET TO CHANGE PASSWD !!!"
 echo "manager:manager passwd:manager"
@@ -52,14 +41,11 @@ echo ' limitations under the License.
   examples web application, do not forget to remove the <!.. ..> that surrounds
   them. You will also need to set the passwords to something appropriate.
 -->
-
 <role rolename="manager-gui"/>
 <user username="manager" password="manager" roles="manager-gui"/>
 
 <role rolename="admin-gui"/>
 <user username="admin" password="admin" roles="admin-gui"/>
-
-
 <!--
   <role rolename="tomcat"/>
   <role rolename="role1"/>
@@ -86,7 +72,6 @@ echo '<multipart-config>
   <max-request-size>262144000</max-request-size>
   <file-size-threshold>0</file-size-threshold>
 </multipart-config>' >> /usr/share/tomcat9/webapps/manager/WEB-INF/web.xml
-
 
 systemctl restart tomcat9
 
